@@ -1,0 +1,9 @@
+services:
+  lucas-rapetime:
+    build: .
+    container_name: lucas-rapetime
+    restart: unless-stopped
+    volumes:
+      - ./.env:/usr/src/app/.env:ro
+    environment:
+      - NODE_ENV=production 
