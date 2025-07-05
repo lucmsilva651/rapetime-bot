@@ -13,7 +13,7 @@ const bot = new Telegraf(process.env.botToken);
 const maxRetries = process.env.maxRetries || 5;
 let restartCount = 0;
 
-async function sendRapeGif() {
+setInterval(() => {
   const channelId = process.env.channelId;
   const ownerId = process.env.ownerId;
 
@@ -24,10 +24,7 @@ async function sendRapeGif() {
       bot.telegram.sendMessage(ownerId, `Failed to send photo to ${chat.title} (${chat.username}, ${channelId}): ${error.message}`);
     });
   });
-};
-
-const cronSch = process.env.cronSchedule || "* * * * *";
-cron.schedule(cronSch, sendRapeGif);
+}, 10 * 1000);
 
 const startBot = async () => {
   const botInfo = await bot.telegram.getMe();
